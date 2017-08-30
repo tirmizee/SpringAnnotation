@@ -1,4 +1,4 @@
-package com.tirmizee.core.config;
+package com.tirmizee.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
