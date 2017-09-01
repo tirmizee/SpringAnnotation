@@ -12,6 +12,10 @@ import com.tirmizee.jdbcrepository.AbstractJdbcRepository;
 import com.tirmizee.jdbcrepository.RowUnmapper;
 import com.tirmizee.repository.entities.User;
 
+/**
+ * @author tirmizee
+ *
+ */
 @Repository
 public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> implements UserRepository {
 	
@@ -55,7 +59,5 @@ public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> imple
 		entity.setId(generatedId.longValue());
 		return entity;
 	}
-	
-	
 
 }

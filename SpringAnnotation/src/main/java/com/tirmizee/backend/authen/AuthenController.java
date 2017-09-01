@@ -8,6 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tirmizee.backend.dao.UserDao;
 
+/**
+ * @author tirmizee
+ *
+ */
 @Controller
 public class AuthenController {
 

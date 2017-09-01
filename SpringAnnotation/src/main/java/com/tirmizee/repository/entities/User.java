@@ -6,11 +6,12 @@ import java.util.Date;
 
 import org.springframework.data.domain.Persistable;
 
+/**
+ * @author tirmizee
+ *
+ */
 public class User implements Persistable<Long> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6344433312348381649L;
 	
 	private Long id;
