@@ -22,7 +22,6 @@ import com.tirmizee.repository.entities.User;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class})
-
 @Transactional
 public class UserTest {
 	
@@ -33,7 +32,6 @@ public class UserTest {
     public void test_ml_always_return_true() {
     	User user = userDao.save(new User(null,"admin","admin",new Date(),null));
     	assertThat(user.getUsername()).isEqualTo("admin");
-    	
     }
     
     @Test
