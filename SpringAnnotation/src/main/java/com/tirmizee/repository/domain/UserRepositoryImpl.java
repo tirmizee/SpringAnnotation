@@ -16,7 +16,7 @@ import com.tirmizee.repository.entities.User;
  * @author tirmizee
  *
  */
-@Repository
+@Repository("UserRepository")
 public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> implements UserRepository {
 	
 	public UserRepositoryImpl() {

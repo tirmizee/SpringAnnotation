@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.tirmizee.core.util.CustomMapper;
-import com.tirmizee.core.util.CustomMapperImpl;
+import com.tirmizee.core.CustomMapper;
+import com.tirmizee.core.CustomMapper;
 
 /**
  * @author tirmizee
@@ -15,8 +15,8 @@ import com.tirmizee.core.util.CustomMapperImpl;
 @Configuration
 public class DozerMapperConfig {
 	
-	@Bean
+	@Bean	
 	public CustomMapper getCustomMapper(){
-		return new CustomMapperImpl(Arrays.asList("dozer-config.xml"));
+		return new CustomMapper(Arrays.asList("dozer-config.xml"));
 	}
 }

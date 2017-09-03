@@ -9,7 +9,7 @@ import com.tirmizee.repository.domain.UserRepositoryImpl;
  * @author tirmizee
  *
  */
-@Repository
+@Repository("UserDao")
 public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 	
 }

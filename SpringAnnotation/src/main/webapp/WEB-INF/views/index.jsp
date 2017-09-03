@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8;"
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
@@ -74,9 +75,14 @@
 			<a href="#" class="close" onclick="$('#errorMsg').hide()">&times;</a>
 			 ชื่อผู้ใช้ หรือรหัสผ่าน <strong>ไม่ถูกต้อง</strong>
 		</div>
-		
+		<c:if test="${not empty error}">
+			<div class="error">${error}</div>
+		</c:if>
+		<c:if test="${not empty msg}">
+			<div class="msg">${msg}</div>
+		</c:if>
 		<div class="loginmodal-container" style="margin-top: 10px;">
-			<form id="inFormLogin" action="Login" method="post">
+			<form id="inFormLogin" action="login" method="post">
 				<div class="form-group">
 					<div class="text-center">
 						<div class="txt26" style="font-family: 'passion_bold';"><b style="color:green">Spring</b>MVC</div>
@@ -98,7 +104,8 @@
 				
 				<div class="form-group">
 					<input  class="btn btn-success"  type="submit" value="Login"  style="width: 100%;font-weight: 800;">	 
-			    </div>				
+			    </div>	
+			    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
 			</form>
 		</div> <!-- loginmodal-container -->
 
@@ -121,7 +128,7 @@ $(document).ready(function(){
 	                        message: 'The username is required'
 	                    },
 	                    stringLength: {
-	                        min: 6,
+	                        min: 3,
 	                        max: 30,
 	                        message: 'The username must be more than 6 and less than 30 '
 	                    }
@@ -133,7 +140,7 @@ $(document).ready(function(){
 	                        message: 'The password is required'
 	                    },
 	                    stringLength: {
-	                        min: 6,
+	                        min: 3,
 	                        max: 30,
 	                        message: 'The password must be more than 6 and less than 30 '
 	                    }
@@ -146,31 +153,7 @@ $(document).ready(function(){
             data.fv.disableSubmitButtons(false);
         }
     }).on('success.form.fv', function(event) {	  
-		event.preventDefault();
-	   
-		userName = event.currentTarget['username'].value;
-		passWord = event.currentTarget['password'].value;
 		
-	    $.ajax({
-		    type : 'POST',
-		    url  : $(this).attr('action'),
-			data : {
-				username : userName,
-			    password : passWord
-		   },
-		   success: function(data){
-			    if (data.status == 'true') {
-			    	login();	    	
-				}else{
-					$('#errorMsg').show().delay(4000).fadeOut('slow');
-					$('#inFormLogin').data('formValidation').resetForm(true);
-				}
-		   },
-           error : function (xhr, ajaxOptions, thrownError) {
-                alert("Error status code: "+xhr.status);
-                alert("Error details: "+ thrownError);
-           }
-		});
 	});  
 	
 	var login = function(){
