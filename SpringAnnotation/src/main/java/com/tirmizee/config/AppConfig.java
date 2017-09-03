@@ -10,7 +10,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.tirmizee"})
+@ComponentScan(basePackages = { "com.tirmizee.config",
+								"com.tirmizee.backend",
+								"com.tirmizee.core"})
 public class AppConfig {
 
 }

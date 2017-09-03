@@ -1,4 +1,4 @@
-package com.tirmizee.test.user;
+package com.tirmizee.backend.dao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -36,11 +36,11 @@ public class AuthenController {
 	public ModelAndView index(ModelAndView modelAndView,@RequestParam(value = "error", required = false) String error) {
 		modelAndView.setViewName("index");
 		List<User> list = Arrays.asList(
-				new User(null,"a",null,null,null),
-				new User(null,"b",null,null,null)
+				new User(null,"a","a",new Date(),null),
+				new User(null,"b","a",new Date(),null)
 			);
- 		List<User> map = mapper.map(list, User.class);
- 		LOGGER.info(map.get(0).getUsername());
+// 		List<User> map = userDao.save(list);
+// 		LOGGER.info(map.get(0).getUsername());
 		return modelAndView;
 	}
 	
@@ -61,6 +61,14 @@ public class AuthenController {
 	public ModelAndView admin() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin/admin");
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	public ModelAndView user() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("user/user");
 		return model;
 
 	}

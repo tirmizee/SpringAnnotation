@@ -35,7 +35,7 @@ public class CustomMapperTest {
 	CustomMapper mapper;
 	
 	@Test
-	public void containsAll_WhenMapperList(){
+	public void containsAllField_WhenMapperList(){
 		
 		//given
 		List<User> sources = new ArrayList<User>();
