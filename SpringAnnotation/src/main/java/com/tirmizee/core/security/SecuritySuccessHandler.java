@@ -1,6 +1,7 @@
-package com.tirmizee.core;
+package com.tirmizee.core.security;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
 
-	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+	private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication Auth)
@@ -29,13 +30,21 @@ public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
 	
 	protected String determineTargetUrl(Authentication authentication) {
         Set<String> authorities = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        if (authorities.contains("ROLE_ADMIN")) {
+        if (isAdmin(authorities)) {
         	return "/admin";
-        } else if (authorities.contains("ROLE_USER")) {
+        } else if (isUser(authorities)) {
         	return "/user";
         } else {
             throw new IllegalStateException("not found url succuess handler");
         }
     }
+	
+	private boolean isAdmin(Collection<String> authorities){
+		return authorities.contains("ADMIN");
+	}
+	
+	private boolean isUser(Collection<String> authorities){
+		return authorities.contains("USER");
+	}
 
 }

@@ -2,9 +2,6 @@ package com.tirmizee.backend.dao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Date;
-
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tirmizee.backend.dao.UserDao;
 import com.tirmizee.config.AppConfig;
 import com.tirmizee.repository.entities.User;
 
@@ -21,22 +17,21 @@ import com.tirmizee.repository.entities.User;
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class})
 @Transactional
-public class UserTest {
+public class UserDaoTest {
 	
 	@Autowired
 	UserDao userDao;
 	
     @Test
-    public void test_ml_always_return_true() {
-    	User user = userDao.save(new User(null,"admin","admin",new Date(),null));
-    	assertThat(user.getUsername()).isEqualTo("admin");
-    }
+    public void UserWhenFindByUsername() {
+    	//given
+    	String username = "admin";
+    	
+    	//when
+    	User user = userDao.findByUsername(username);
     
-    @Test
-    @Ignore
-    public void t() {
-    	User user = userDao.save(new User(null,"admin","admin",new Date(),null));
-    	assertThat(user.getUsername()).isEqualTo("admin");
+    	//then
+    	assertThat(user).isNotNull();
     }
 
 }

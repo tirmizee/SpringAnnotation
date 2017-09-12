@@ -13,10 +13,12 @@
 <link rel="stylesheet" href="resources/libs/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/libs/admin-lte2/css/AdminLTE.min.css">
 <link rel="stylesheet" href="resources/libs/admin-lte2/css/skins/skin-purple.min.css">
+<link rel="stylesheet" href="resources/libs/datatables/css/jquery.dataTables.min.css">
 
 <script src="resources/libs/bootstrap/js/jquery-3.2.1.min.js" ></script>
 <script src="resources/libs/bootstrap/js/bootstrap.min.js" ></script>
 <script src="resources/libs/admin-lte2/js/app.js"></script>
+<script src="resources/libs/datatables/js/jquery.dataTables.min.js"></script>
 
 <style >
 
@@ -54,11 +56,9 @@
               <span class="hidden-xs">${sessionScope.user.firstName} ${sessionScope.user.lastName}</span>
             </a>
             <ul class="dropdown-menu">
-
               <!-- User image -->
               <li class="user-header">
                 <img src="resources/libs/admin-lte2/img/user.png" class="img-circle" alt="User Image">
-
                 <p>
                   ${sessionScope.user.firstName} ${sessionScope.user.lastName} - Web Developer
                   <small>Member since Nov. 2012</small>
@@ -72,7 +72,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="Logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li><!-- end Menu Footer-->
             </ul>
@@ -94,7 +94,7 @@
           <img src="resources/libs/admin-lte2/img/user.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>${sessionScope.user.firstName} ${sessionScope.user.lastName}</p>
+          <p>${name} ${sessionScope.user.lastName}</p>
           <a href="">${sessionScope.user.roleName}</a>
         </div>
       </div>
@@ -153,7 +153,15 @@
 
     <!-- Main content -->
     <section class="content">
-     
+     hello world ${name}
+     <input type="text" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+     <table id="example" class="display" cellspacing="0" width="100%"></table>
+     <form action="save" method="post">
+	 <input type="text" name="draw"><br>
+	 <input type="text" name="start"><br>
+	 <input type="text" name="length"><br>
+	  <input type="submit" value="Submit">
+	</form>
     </section>
     <!-- /.content -->
   </div>
@@ -178,6 +186,29 @@
 
 
 <script>
+$(document).ready(function() {
+	
+    $('#example').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "test2",
+            "type": "POST",
+            contentType: 'application/json',
+           // dataType: 'json',
+            "data": function ( d ) {
+                return JSON.stringify( d );
+              }
+        },
+        "columns": [       
+            { "data": "id" },
+            { "data": "username" },
+            { "data": "password" },
+            { "data": "create_date" },
+            { "data": "update_date" }
+        ]
+    });
+});
 </script>
 </body>
 </html>

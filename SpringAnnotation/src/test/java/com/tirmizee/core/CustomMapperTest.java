@@ -47,6 +47,7 @@ public class CustomMapperTest {
 
 		//then
 		assertThat(destination).isNotEmpty();
+		assertThat(destination).hasSize(sources.size());
 		for (int i = 0; i < destination.size(); i++) {
 			assertThat(destination.get(i)).isEqualToComparingFieldByField(sources.get(i));
 		}
