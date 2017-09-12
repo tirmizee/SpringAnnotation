@@ -25,19 +25,19 @@ public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
 			throws IOException, ServletException {
 		/*Set target URL to redirect*/
 		String targetUrl = determineTargetUrl(Auth); 
-        redirectStrategy.sendRedirect(request, response, targetUrl);
+       		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
 	
 	protected String determineTargetUrl(Authentication authentication) {
-        Set<String> authorities = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        if (isAdmin(authorities)) {
-        	return "/admin";
-        } else if (isUser(authorities)) {
-        	return "/user";
-        } else {
-            throw new IllegalStateException("not found url succuess handler");
-        }
-    }
+		Set<String> authorities = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
+		if (isAdmin(authorities)) {
+			return "/admin";
+		} else if (isUser(authorities)) {
+			return "/user";
+		} else {
+		    throw new IllegalStateException("not found url succuess handler");
+		}
+	    }
 	
 	private boolean isAdmin(Collection<String> authorities){
 		return authorities.contains("ADMIN");
