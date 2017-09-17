@@ -1,4 +1,4 @@
-package com.tirmizee.config;
+package com.tirmizee.core.config;
 
 import javax.sql.DataSource;
 

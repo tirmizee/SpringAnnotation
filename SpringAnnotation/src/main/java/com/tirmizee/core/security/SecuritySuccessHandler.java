@@ -21,11 +21,10 @@ public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
 	private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication Auth)
-			throws IOException, ServletException {
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication Auth) throws IOException, ServletException {
 		/*Set target URL to redirect*/
 		String targetUrl = determineTargetUrl(Auth); 
-       		redirectStrategy.sendRedirect(request, response, targetUrl);
+       	redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
 	
 	protected String determineTargetUrl(Authentication authentication) {
@@ -40,11 +39,11 @@ public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
 	    }
 	
 	private boolean isAdmin(Collection<String> authorities){
-		return authorities.contains("ADMIN");
+		return authorities.contains("AD000");
 	}
 	
 	private boolean isUser(Collection<String> authorities){
-		return authorities.contains("USER");
+		return authorities.contains("US000");
 	}
 
 }

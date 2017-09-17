@@ -30,7 +30,7 @@ public class PermissionDaoImpl extends PermissionRepositoryImpl implements Permi
 			.append(" ON ").append(" user_map_per.FK_PER_ID = permission.PER_ID ")
 			.append(SqlGenerator.WHERE).append(" user.USERNAME ").append(SqlGenerator.PARAM);
 		LOGGER.info(sql);
-		return getJdbcOps().query(sql.toString(), new Object[]{username}, PermissionRepositoryImpl.MAPPER);
+		return getJdbcOps().query(sql.toString(), new Object[]{username}, MAPPER);
 	}
 
 }

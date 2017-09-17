@@ -9,8 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.tirmizee.jdbcrepository.TableDescription;
-
-
 public class SqlGenerator {
 	public static final String WHERE = " WHERE ";
 	public static final String AND = " AND ";

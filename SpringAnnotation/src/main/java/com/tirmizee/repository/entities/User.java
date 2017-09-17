@@ -6,6 +6,8 @@ import java.util.Date;
 
 import org.springframework.data.domain.Persistable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author tirmizee
  *

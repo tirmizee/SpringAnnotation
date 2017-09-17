@@ -31,6 +31,7 @@ import org.springframework.util.Assert;
 import com.tirmizee.jdbcrepository.sql.SqlGenerator;
 /**
  * Implementation of {@link PagingAndSortingRepository} using {@link JdbcTemplate}
+ * https://github.com/nurkiewicz/spring-data-jdbc-repository
  */
 public abstract class AbstractJdbcRepository<T extends Persistable<ID>, ID extends Serializable> 
 	implements PagingAndSortingRepository<T, ID>,InitializingBean{

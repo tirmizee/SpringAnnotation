@@ -19,8 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.tirmizee.config.AppConfig;
-import com.tirmizee.core.CustomMapper;
+import com.tirmizee.core.commons.CustomMapper;
+import com.tirmizee.core.config.AppConfig;
 import com.tirmizee.repository.entities.User;
 /**
  * @author tirmizee

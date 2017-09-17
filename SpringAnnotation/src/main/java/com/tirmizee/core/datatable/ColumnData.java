@@ -1,0 +1,29 @@
+package com.tirmizee.core.datatable;
+
+import java.io.Serializable;
+
+/**
+ * @author tirmizee
+ *
+ */
+public class ColumnData  implements Serializable{
+
+	private static final long serialVersionUID = 4556209539434726243L;
+	
+	private String data;
+	private String name;
+	
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}

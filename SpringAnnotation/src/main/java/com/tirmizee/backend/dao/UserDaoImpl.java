@@ -5,6 +5,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.tirmizee.jdbcrepository.sql.SqlGenerator;
+import com.tirmizee.repository.domain.UserRepository;
 import com.tirmizee.repository.domain.UserRepositoryImpl;
 import com.tirmizee.repository.entities.User;
 
@@ -21,16 +22,19 @@ public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 	public User findByUsername(String username) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(SqlGenerator.SELECT).append(" * ")
-			.append(SqlGenerator.FROM).append(getTable().getName())
+			.append(SqlGenerator.FROM).append(UserRepository.USER)
 			.append(SqlGenerator.WHERE)
 			.append(" USERNAME ").append(SqlGenerator.PARAM);
 		LOGGER.info(sql);
+		
 		try {
-			return getJdbcOps().queryForObject(sql.toString(), new Object[]{username}, UserRepositoryImpl.MAPPER);
+			return getJdbcOps().queryForObject(sql.toString(), new Object[]{username},MAPPER);
 		} catch (EmptyResultDataAccessException e) {
 			LOGGER.debug(e);
 			return null;
 		}
 	}
+
+	
 	
 }

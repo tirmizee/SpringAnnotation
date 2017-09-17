@@ -48,7 +48,7 @@ public class UserProfileService implements UserDetailsService {
 	private Set<GrantedAuthority> getAuthorities(Collection<Permission> permissions){
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
         for(Permission permission : permissions) {
-            authorities.add(new SimpleGrantedAuthority(permission.getName()));
+            authorities.add(new SimpleGrantedAuthority(permission.getCode()));
         }
         LOGGER.debug("user authorities are " + authorities.toString());
 	    return authorities;

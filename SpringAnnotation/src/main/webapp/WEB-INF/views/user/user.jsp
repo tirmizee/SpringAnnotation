@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -14,14 +14,15 @@
 <link rel="stylesheet" href="resources/libs/admin-lte2/css/AdminLTE.min.css">
 <link rel="stylesheet" href="resources/libs/admin-lte2/css/skins/skin-purple.min.css">
 <link rel="stylesheet" href="resources/libs/datatables/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="resources/libs/datatables/css/colReorder.dataTables.min.css">
 
 <script src="resources/libs/bootstrap/js/jquery-3.2.1.min.js" ></script>
 <script src="resources/libs/bootstrap/js/bootstrap.min.js" ></script>
 <script src="resources/libs/admin-lte2/js/app.js"></script>
 <script src="resources/libs/datatables/js/jquery.dataTables.min.js"></script>
-
+<script src="resources/libs/datatables/js/dataTables.colReorder.min.js"></script>
 <style >
-
+	
 </style>
 
 <title>Hello JSP</title>
@@ -29,113 +30,8 @@
 <body class="hold-transition skin-purple sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
-
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>T</b>MZ</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>TIRMI</b>ZEE</span>
-    </a>
-
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-     
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="resources/libs/admin-lte2/img/user.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">${sessionScope.user.firstName} ${sessionScope.user.lastName}</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="resources/libs/admin-lte2/img/user.png" class="img-circle" alt="User Image">
-                <p>
-                  ${sessionScope.user.firstName} ${sessionScope.user.lastName} - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li> <!--end User image -->
-           
-             
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="logout" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li><!-- end Menu Footer-->
-            </ul>
-          </li> <!--end User Account: style can be found in dropdown.less -->
-          
-          
-        </ul>
-      </div>  <!--end Navbar Right Menu -->
-
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="resources/libs/admin-lte2/img/user.png" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>${name} ${sessionScope.user.lastName}</p>
-          <a href="">${sessionScope.user.roleName}</a>
-        </div>
-      </div>
-     
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard" style="height: 20px;"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
- 
-       
-       
-       
-        <li>
-          <a href="#">
-            <i class="fa fa-calendar" style="height: 20px;"></i> <span>Calendar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">1</small>
-              
-            </span>
-          </a>
-        </li>
-       
-       
-         </ul>
-       
-         
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+  <jsp:include page="../tenplate/header.jsp" />
+  <jsp:include page="../tenplate/menu_sidebar_user.jsp" />
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -153,29 +49,17 @@
 
     <!-- Main content -->
     <section class="content">
-     hello world ${name}
-     <input type="text" name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+    
      <table id="example" class="display" cellspacing="0" width="100%"></table>
-     <form action="save" method="post">
-	 <input type="text" name="draw"><br>
-	 <input type="text" name="start"><br>
-	 <input type="text" name="length"><br>
-	  <input type="submit" value="Submit">
-	</form>
+    
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Tirmizee Version</b> ${initParam['AppVersion']}
-    </div>
-    <strong>Copyright &copy; 2017 </strong> All rights
-    reserved.
-  </footer>
+  
 
-
+  <jsp:include page="../tenplate/footer.jsp" />
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -187,27 +71,47 @@
 
 <script>
 $(document).ready(function() {
-	
-    $('#example').DataTable( {
-        "processing": true,
-        "serverSide": true,
+	var st = 0;
+    var dataTable = $('#example').DataTable( {
+        "processing"  : true,
+        "colReorder"  : {
+							fixedColumnsLeft: 1
+						},
+        "serverSide" : true,
+        "searching"  : false,
         "ajax": {
-            "url": "test2",
+            "url": "service/user/findAll",
             "type": "POST",
             contentType: 'application/json',
-           // dataType: 'json',
             "data": function ( d ) {
-                return JSON.stringify( d );
+            	d.search.val = "ssss";
+            	alert(JSON.stringify(d));
+                return JSON.stringify(d);
               }
         },
-        "columns": [       
+        "columns": [ 
             { "data": "id" },
-            { "data": "username" },
-            { "data": "password" },
-            { "data": "create_date" },
-            { "data": "update_date" }
-        ]
+            { "data": "index"    ,title :"ลำดับ" },
+            { "data": "username"    ,title :"ชื่อผู้ใช้" },
+            { "data": "password"    ,title:"รหัสผ่าน"  },
+            { "data": "create_date" ,title:"วันที่สร้าง" },
+            { "data": "update_date" ,title:"วันที่แก้ไข"}
+        ],
+        "columnDefs": [
+            {
+	        	"targets": 1,
+	           	"render": function ( data, type, row, meta ) {
+	             	return meta.settings._iDisplayStart + meta.row + 1;
+	            }
+         	 },{
+         		 targets : 0,
+         		 visible : false
+         	 }
+         ]
     });
+    
+   
+    
 });
 </script>
 </body>

@@ -1,4 +1,4 @@
-package com.tirmizee.config;
+package com.tirmizee.core.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

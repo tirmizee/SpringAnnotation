@@ -20,11 +20,11 @@ import com.tirmizee.repository.entities.User;
 public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> implements UserRepository {
 	
 	public UserRepositoryImpl() {
-		this("user");
+		this(USER);
 	}
 
 	public UserRepositoryImpl(String tableName) {
-		super(MAPPER, UNMAPPER, tableName, "ID");
+		super(MAPPER, UNMAPPER, tableName, ID);
 	}
 	
 	public static final RowMapper<User> MAPPER = new RowMapper<User>() {
@@ -32,11 +32,11 @@ public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> imple
 		@Override
 		public User mapRow(ResultSet rs, int arg1) throws SQLException {
 			return new User(
-					rs.getLong("ID"),
-					rs.getString("USERNAME"),
-					rs.getString("PASSWORD"),
-					rs.getDate("CREATE_DATE"),
-					rs.getDate("UPDATE_DATE"));
+					rs.getLong(ID),
+					rs.getString(USERNAME),
+					rs.getString(PASSWORD),
+					rs.getDate(CREATE_DATE),
+					rs.getDate(UPDATE_DATE));
 		}
 	};
 	
@@ -45,11 +45,11 @@ public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> imple
 		@Override
 		public Map<String, Object> mapColumns(User param) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("ID", param.getId());
-			map.put("USERNAME", param.getUsername());
-			map.put("PASSWORD", param.getPassword());
-			map.put("CREATE_DATE", param.getCreate_date());
-			map.put("UPDATE_DATE", param.getUpdate_date());
+			map.put(ID, param.getId());
+			map.put(USERNAME, param.getUsername());
+			map.put(PASSWORD, param.getPassword());
+			map.put(CREATE_DATE, param.getCreate_date());
+			map.put(UPDATE_DATE, param.getUpdate_date());
 			return map;
 		}
 	};
