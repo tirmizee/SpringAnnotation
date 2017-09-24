@@ -37,12 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired 
 	PermissionDao permissionDao;
 	
-	@Autowired 
-	PasswordEncoder passwordEncoder;
+	@Bean
+	public PasswordEncoder passwordEncoder(){
+		PasswordEncoder encoder = new BCryptPasswordEncoder(11);
+		return encoder;
+	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		 auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder);
+		 auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
 	}
 	
 	@Override

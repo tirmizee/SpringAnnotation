@@ -1,7 +1,7 @@
 package com.tirmizee.repository.domain;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.jdbc.core.RowMapper;
@@ -43,7 +43,7 @@ public class PermissionRepositoryImpl extends AbstractJdbcRepository<Permission,
 		
 		@Override
 		public Map<String, Object> mapColumns(Permission param) {
-			Map<String, Object> map = new HashMap<>();
+			Map<String, Object> map = new LinkedHashMap<>();
 			map.put("PER_ID", param.getId());
 			map.put("PER_CODE", param.getCode());
 			map.put("PER_NAME", param.getName());

@@ -4,21 +4,26 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.tirmizee.core.annotaion.SortColumns;
 
-public class UserDto implements Serializable {
-	
-	
+/**
+ * @author tirmizee
+ *
+ */
+public class UserTableDto implements Serializable {
 	
 	private static final long serialVersionUID = 5798756052521574168L;
 
+	@SortColumns("ID")
 	private Long id;
 	
-	private Long index;
-	
+	@SortColumns({"USERNAME","PASSWORD"})
 	private String username;
 	
+	@SortColumns("PASSWORD")
 	private String password;
 	
+	@SortColumns("CREATE_DATE")
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date create_date;
 	
@@ -29,12 +34,6 @@ public class UserDto implements Serializable {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Long getIndex() {
-		return index;
-	}
-	public void setIndex(Long index) {
-		this.index = index;
 	}
 	public String getUsername() {
 		return username;
@@ -60,7 +59,5 @@ public class UserDto implements Serializable {
 	public void setUpdate_date(Date update_date) {
 		this.update_date = update_date;
 	}
-	
-	
 
 }

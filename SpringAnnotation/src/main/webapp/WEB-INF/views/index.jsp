@@ -47,7 +47,6 @@
     color: #18bc9c;
 }
 #errorMsg{
-	display: none;
 	max-width: 350px;
 	margin: auto;	
 }
@@ -71,12 +70,11 @@
 </head>
 <body class="bg">
 	<div class="container" style="margin-top: 12%" >
-		<div id="errorMsg" class="alert alert-danger" align="center">
-			<a href="#" class="close" onclick="$('#errorMsg').hide()">&times;</a>
-			 ชื่อผู้ใช้ หรือรหัสผ่าน <strong>ไม่ถูกต้อง</strong>
-		</div>
 		<c:if test="${not empty error}">
-			<div class="error">${error}</div>
+			<div id="errorMsg"  class="alert alert-danger" align="center">
+			<a href="#" class="close" onclick="$('#errorMsg').hide()">&times;</a>
+				 ชื่อผู้ใช้ หรือรหัสผ่าน <strong>ไม่ถูกต้อง</strong>
+			</div>
 		</c:if>
 		<c:if test="${not empty msg}">
 			<div class="msg">${msg}</div>
@@ -113,7 +111,9 @@
 <script>
 $(document).ready(function(){
 	
-	var userName,passWord;
+	var userName = $('#errorMsg');
+	 
+	
 	$('#inFormLogin').formValidation({
 		 framework: 'bootstrap',
 	        icon: {
@@ -141,8 +141,8 @@ $(document).ready(function(){
 	                    },
 	                    stringLength: {
 	                        min: 3,
-	                        max: 30,
-	                        message: 'The password must be more than 6 and less than 30 '
+	                        max: 100,
+	                        message: 'The password must be more than 6 and less than 100 '
 	                    }
 	                }
 	            }
@@ -156,17 +156,7 @@ $(document).ready(function(){
 		
 	});  
 	
-	var login = function(){
-		// create and summit form action to Login
-		
-		$("<form/>",{ action : 'Authen', method : 'post'})
-			.append(  $("<input>",  { type:'hidden', name :'username', value :userName } ))
-			.append(  $("<input>",  { type:'hidden', name :'password', value :passWord } ))
-			.appendTo('body')
-			.submit();
-		
-		
-	}
+	
 	
 	
 }); 

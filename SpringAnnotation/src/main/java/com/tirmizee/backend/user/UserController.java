@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tirmizee.backend.dao.UserDao;
-import com.tirmizee.backend.user.data.UserDto;
+import com.tirmizee.backend.user.data.CriteriaUserTable;
+import com.tirmizee.backend.user.data.UserTableDto;
 import com.tirmizee.core.commons.CustomMapper;
 import com.tirmizee.core.datatable.BuildPageRequest;
 import com.tirmizee.core.datatable.RequestData;
 import com.tirmizee.core.datatable.ResponseData;
-import com.tirmizee.core.datatable.Saa;
 import com.tirmizee.repository.entities.User;
 
+/**
+ * @author tirmizee
+ *
+ */
 @Controller
 @RequestMapping("service/user")
 public class UserController {
@@ -33,11 +37,10 @@ public class UserController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/findAll", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseData<UserDto> test(@Valid @RequestBody RequestData<Saa> requestData) {
-		PageRequest pageRequest = BuildPageRequest.build(requestData);
-		Page<User> page = userDao.findAll(pageRequest);
-		Page<UserDto> pages = mapper.map(page, UserDto.class);
-		return new ResponseData<UserDto>(pages);
+	public ResponseData<UserTableDto> test(@Valid @RequestBody RequestData<CriteriaUserTable> requestData) {
+		PageRequest pageRequest = BuildPageRequest.build(requestData,UserTableDto.class);
+		Page<User> page = userDao.findByAllFields(pageRequest, requestData.getSerch());
+		return new ResponseData<UserTableDto>(mapper.map(page, UserTableDto.class));
 	}
 	
 }

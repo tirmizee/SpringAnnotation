@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.tirmizee.backend.user.data.UserDto;
+import com.tirmizee.backend.user.data.UserTableDto;
 import com.tirmizee.core.commons.CustomMapper;
 import com.tirmizee.core.config.AppConfig;
 import com.tirmizee.repository.entities.User;
@@ -37,7 +37,7 @@ public class CustomMapperTest {
 		User user = new User(1l, "admin", "123456", new Date(), new Date());
 		
 		//when
-		UserDto userDto = mapper.map(user, UserDto.class);
+		UserTableDto userDto = mapper.map(user, UserTableDto.class);
 		
 		//then
 		assertThat(user.getCreate_date()).isEqualTo(userDto.getCreate_date());
@@ -58,8 +58,8 @@ public class CustomMapperTest {
 		Iterator<User> users = listOfUser.iterator();
 		
 		//when
-		List<UserDto> listOfUSerDto = mapper.map(listOfUser, UserDto.class);
-		Iterator<UserDto> userDtos = listOfUSerDto.listIterator();
+		List<UserTableDto> listOfUSerDto = mapper.map(listOfUser, UserTableDto.class);
+		Iterator<UserTableDto> userDtos = listOfUSerDto.listIterator();
 
 		//then
 		assertThat(listOfUser).hasSize(listOfUSerDto.size());
@@ -67,7 +67,7 @@ public class CustomMapperTest {
 		while (users.hasNext()) {
 			User user = users.next();
 			if (userDtos.hasNext()) {
-				UserDto userDto = userDtos.next();
+				UserTableDto userDto = userDtos.next();
 				assertThat(user.getCreate_date()).isEqualTo(userDto.getCreate_date());
 				assertThat(user.getUpdate_date()).isEqualTo(userDto.getUpdate_date());
 				assertThat(user.getId()).isEqualTo(userDto.getId());

@@ -89,6 +89,14 @@ public class SqlGenerator {
 	public String selectAll(TableDescription table) {
 		return SELECT + allColumnsClause + " " + FROM + table.getFromClause();
 	}
+	
+	public StringBuilder selectAll(StringBuilder statement, Pageable page) {
+		return selectAll(statement, page.getSort()).append(limitClause(page));
+	}
+
+	private StringBuilder selectAll(StringBuilder statement, Sort sort) {
+		return statement.append(sortingClauseIfRequired(sort));
+	}
 
 	public String selectAll(TableDescription table, Pageable page) {
 		return selectAll(table, page.getSort()) + limitClause(page);

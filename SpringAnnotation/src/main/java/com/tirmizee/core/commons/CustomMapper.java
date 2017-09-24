@@ -53,6 +53,4 @@ public class CustomMapper extends DozerBeanMapper  {
 		return new PageImpl<T>(content,pageRequest,object.getTotalElements());	
 	}
 	
-	
-	
 }

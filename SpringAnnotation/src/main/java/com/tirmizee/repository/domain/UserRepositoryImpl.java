@@ -2,7 +2,7 @@ package com.tirmizee.repository.domain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.jdbc.core.RowMapper;
@@ -44,7 +44,7 @@ public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> imple
 		
 		@Override
 		public Map<String, Object> mapColumns(User param) {
-			Map<String, Object> map = new HashMap<String, Object>();
+			Map<String, Object> map = new LinkedHashMap<String, Object>();
 			map.put(ID, param.getId());
 			map.put(USERNAME, param.getUsername());
 			map.put(PASSWORD, param.getPassword());

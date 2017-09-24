@@ -71,7 +71,6 @@
 
 <script>
 $(document).ready(function() {
-	var st = 0;
     var dataTable = $('#example').DataTable( {
         "processing"  : true,
         "colReorder"  : {
@@ -90,12 +89,14 @@ $(document).ready(function() {
               }
         },
         "columns": [ 
+           
             { "data": "id" },
-            { "data": "index"    ,title :"ลำดับ" },
+            { "data": null          ,title :"ลำดับ" },
             { "data": "username"    ,title :"ชื่อผู้ใช้" },
             { "data": "password"    ,title:"รหัสผ่าน"  },
             { "data": "create_date" ,title:"วันที่สร้าง" },
-            { "data": "update_date" ,title:"วันที่แก้ไข"}
+            { "data": "update_date" ,title:"วันที่แก้ไข"},
+            { "data": null ,title:"action"}
         ],
         "columnDefs": [
             {
@@ -106,6 +107,11 @@ $(document).ready(function() {
          	 },{
          		 targets : 0,
          		 visible : false
+         	 },{
+         		targets : 6,
+         		render : function( data, type, row, meta){
+         			return "<button>edit</button>";
+         		}
          	 }
          ]
     });
