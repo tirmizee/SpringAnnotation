@@ -23,6 +23,12 @@ public class UserTableDto implements Serializable {
 	@SortColumns("PASSWORD")
 	private String password;
 	
+	@SortColumns("FIRSTNAME")
+	private String firstname;
+	
+	@SortColumns("LASTNAME")
+	private String lastname;
+	
 	@SortColumns("CREATE_DATE")
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date create_date;
@@ -46,6 +52,18 @@ public class UserTableDto implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 	public Date getCreate_date() {
 		return create_date;

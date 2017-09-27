@@ -93,7 +93,8 @@ $(document).ready(function() {
             { "data": "id" },
             { "data": null          ,title :"ลำดับ" },
             { "data": "username"    ,title :"ชื่อผู้ใช้" },
-            { "data": "password"    ,title:"รหัสผ่าน"  },
+            { "data": "firstname"    ,title :"ชื่อ" },
+            { "data": "lastname"    ,title:"นามสกุล"  },
             { "data": "create_date" ,title:"วันที่สร้าง" },
             { "data": "update_date" ,title:"วันที่แก้ไข"},
             { "data": null ,title:"action"}
@@ -104,14 +105,11 @@ $(document).ready(function() {
 	           	"render": function ( data, type, row, meta ) {
 	             	return meta.settings._iDisplayStart + meta.row + 1;
 	            }
-         	 },{
+         	 },
+         	 {
          		 targets : 0,
          		 visible : false
-         	 },{
-         		targets : 6,
-         		render : function( data, type, row, meta){
-         			return "<button>edit</button>";
-         		}
+         	 
          	 }
          ]
     });

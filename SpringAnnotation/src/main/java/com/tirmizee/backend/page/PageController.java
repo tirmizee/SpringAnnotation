@@ -1,14 +1,10 @@
-package com.tirmizee.backend.authen;
-
-import java.util.List;
+package com.tirmizee.backend.page;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tirmizee.backend.dao.GeographyDao;
 import com.tirmizee.backend.dao.PermissionDao;
 import com.tirmizee.backend.dao.UserDao;
 import com.tirmizee.core.commons.CustomMapper;
@@ -26,15 +23,18 @@ import com.tirmizee.core.commons.CustomMapper;
  *
  */
 @Controller
-public class AuthenController {
+public class PageController {
 
-	private static final Logger LOGGER =  Logger.getLogger(AuthenController.class);
+	private static final Logger LOGGER =  Logger.getLogger(PageController.class);
 	
 	@Autowired
 	UserDao userDao;
 	
 	@Autowired
 	PermissionDao permissionDao;
+	
+	@Autowired
+	GeographyDao geographyDao;
 	
 	@Autowired 
  	CustomMapper mapper;
@@ -54,13 +54,15 @@ public class AuthenController {
 		if (error != null) {
 			model.addObject("error", "Invalid username and password!");
 		}
+		LOGGER.debug(geographyDao.findOne(1l).getGeoName());
 		return model;
 	}
 	
 	@PreAuthorize("hasAnyAuthority('AD000')")
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public ModelAndView admin() {
+	public ModelAndView admin(Authentication authentication) {
 		ModelAndView model = new ModelAndView();
+		model.addObject("user", authentication.getName());
 		model.setViewName("admin/admin");
 		return model;
 	}
@@ -77,11 +79,13 @@ public class AuthenController {
 		return model;
 	}
 	
-//	@RequestMapping(value = "/service/test", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public String test(@RequestBody List<De> list) {
-//		LOGGER.debug(list.size());
-//		return "";
-//	}
+	@ResponseBody
+	@PreAuthorize("hasAnyAuthority('AD000')")
+	@RequestMapping(value = "service/test", method = RequestMethod.POST, headers = "Accept=application/json")
+	public De test(@RequestBody Sa list) {
+		LOGGER.debug(list.getDatas().size());
+		LOGGER.debug(list.getDatas().get(list.getDatas().size()-1).getTitle());
+		return new De();
+	}
 	
 }

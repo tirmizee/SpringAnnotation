@@ -116,7 +116,6 @@ $(document).ready(function() {
 		alert($("input[name='dueDate[]']").val());
 	});
 	
-	var list = [];
 	  var titleValidators = {
 	            row: '.col-xs-4',   // The title is placed inside a <div class="col-xs-4"> element
 	            validators: {
@@ -193,7 +192,6 @@ $(document).ready(function() {
 	        .on('click', '.removeButton', function() {
 	            var $row  = $(this).parents('.form-group'),
 	                index = $row.attr('data-book-index');
-	            list = list.slice(index, 1).clean("{}"); 
 	            // Remove fields
 	            $('#bookForm')
 	                .formValidation('removeField', $row.find('[name="book[' + index + '].title"]'))
@@ -205,19 +203,24 @@ $(document).ready(function() {
 	        })
      .on('success.form.fv', function(e) {
             e.preventDefault();
-            list = [];
+            var list = [];
+            var ob = {};
             for (var i = 0; i < bookIndex+1; i++) {
-            	list.push({
-        			title : $("input[name='book[" + i + "].title']").val()
-        		});
+            	if($("input[name='book[" + i + "].title']").val()){
+            		list.push({
+            			title : $("input[name='book[" + i + "].title']").val()
+            		});
+            	}
 			}
+            ob.datas = list;
+            alert(JSON.stringify(list));
             $.ajax({
             	  method: "POST",
             	  url: "service/test",
             	  contentType: 'application/json',
-            	  data : list,
+            	  data :  JSON.stringify(ob),
             	  success : function (data) {
-						alert(data);
+						alert(JSON.stringify(data));
 					}
             });
 

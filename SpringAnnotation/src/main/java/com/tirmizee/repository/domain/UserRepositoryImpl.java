@@ -35,6 +35,8 @@ public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> imple
 					rs.getLong(ID),
 					rs.getString(USERNAME),
 					rs.getString(PASSWORD),
+					rs.getString(FIRSTNAME),
+					rs.getString(LASTNAME),
 					rs.getDate(CREATE_DATE),
 					rs.getDate(UPDATE_DATE));
 		}
@@ -48,6 +50,8 @@ public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> imple
 			map.put(ID, param.getId());
 			map.put(USERNAME, param.getUsername());
 			map.put(PASSWORD, param.getPassword());
+			map.put(FIRSTNAME, param.getFirstname());
+			map.put(LASTNAME, param.getLastname());
 			map.put(CREATE_DATE, param.getCreate_date());
 			map.put(UPDATE_DATE, param.getUpdate_date());
 			return map;

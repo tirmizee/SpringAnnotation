@@ -52,6 +52,8 @@ public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 				.append(" ID ,")
 				.append(" USERNAME ,")
 				.append(" PASSWORD ,")
+				.append(" FIRSTNAME ,")
+				.append(" LASTNAME ,")
 				.append(" CREATE_DATE ,")
 				.append(" UPDATE_DATE ")
 				.append(SqlGenerator.FROM)

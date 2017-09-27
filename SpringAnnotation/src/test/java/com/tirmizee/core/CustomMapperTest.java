@@ -4,14 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.function.Consumer;
 
-import org.dozer.DozerBeanMapper;
-import org.dozer.loader.api.BeanMappingBuilder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +33,8 @@ public class CustomMapperTest {
 		
 		//given
 		List<User> sources = new ArrayList<User>();
-		sources.add(new User(1l, "admin", "admin", new Date(), null));
-		sources.add(new User(2l, "user", "user", new Date(), null));
+		sources.add(new User(1l, "admin", "admin","","", new Date(), null));
+		sources.add(new User(2l, "user", "user", "","",new Date(), null));
 		
 		//when
 		List<User> destination = mapper.map(sources, User.class);

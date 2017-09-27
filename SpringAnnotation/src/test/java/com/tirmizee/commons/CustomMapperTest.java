@@ -34,7 +34,7 @@ public class CustomMapperTest {
 	public void trueWhenMapperClass(){
 		
 		// given
-		User user = new User(1l, "admin", "123456", new Date(), new Date());
+		User user = new User(1l, "admin", "123456","","", new Date(), new Date());
 		
 		//when
 		UserTableDto userDto = mapper.map(user, UserTableDto.class);
@@ -53,7 +53,7 @@ public class CustomMapperTest {
 		// given
 		List<User> listOfUser = new ArrayList<>();
 		for (long i = 0; i < 5; i++) {
-			listOfUser.add(new User(i, "admin" + i, "123456"+ i, new Date(), new Date()));
+			listOfUser.add(new User(i, "admin" + i, "123456"+ i,"","", new Date(), new Date()));
 		}
 		Iterator<User> users = listOfUser.iterator();
 		
