@@ -62,12 +62,11 @@ public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 				.append(" ID IS NOT NULL ");
 				if (criteria.getUsername() != null) {
 					select.append(SqlGenerator.AND)
-					.append(" USERNAME ").append(SqlGenerator.PARAM);
-					params.add(StringUtils.trimToEmpty(criteria.getUsername()));
+					.append(" USERNAME LIKE ?");
+					params.add("%" + StringUtils.trimToEmpty(criteria.getUsername()) + "%");
 				}
-				
-				PageImpl<User> page = new PageImpl<User>(getJdbcOps().query(getSqlGenerator().selectAll(select, pageable).toString(), params.toArray(), MAPPER), pageable,count());
-				
+				long count = count(select.toString(), params.toArray());
+				PageImpl<User> page = new PageImpl<User>(getJdbcOps().query(getSqlGenerator().selectAll(select, pageable).toString(), params.toArray(), MAPPER), pageable,count);
 		return page;
 	}
 

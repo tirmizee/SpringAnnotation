@@ -37,7 +37,6 @@ public class BuildPageRequest {
 
 	private static void addOrderByFiled(Direction direction, String requestField, List<Order> results, Field[] fields) {
 		for (Field field : fields) {
-			System.out.println(field.getName() +" "+requestField );
 			if (field.isAnnotationPresent(SortColumns.class) && field.getName().equals(requestField)) {
 				SortColumns sortColumns = field.getAnnotation(SortColumns.class);
 				for (String column : sortColumns.value()) {

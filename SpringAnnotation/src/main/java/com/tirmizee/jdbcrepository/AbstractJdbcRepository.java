@@ -115,6 +115,14 @@ public abstract class AbstractJdbcRepository<T extends Persistable<ID>, ID exten
 	public long count() {
 		return jdbcOperations.queryForObject(sqlGenerator.count(table), Long.class);
 	}
+	
+	public long count(String statement) {
+		return jdbcOperations.queryForObject(sqlGenerator.count(statement), Long.class);
+	}
+	
+	public long count(String statement, Object...param) {
+		return jdbcOperations.queryForObject(sqlGenerator.count(statement), Long.class, param);
+	}
 
 	@Override
 	public void delete(ID id) {

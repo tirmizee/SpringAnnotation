@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author tirmizee
- *
+ * https://datatables.net/manual/server-side
  */
 public class OrderData implements Serializable {
 

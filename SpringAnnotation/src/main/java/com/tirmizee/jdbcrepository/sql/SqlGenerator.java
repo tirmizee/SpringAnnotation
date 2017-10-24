@@ -31,6 +31,10 @@ public class SqlGenerator {
 	public String count(TableDescription table) {
 		return SELECT + "COUNT(*) " + FROM + table.getFromClause();
 	}
+	
+	public String count(String table) {
+		return SELECT + "COUNT(*) " + FROM + " (" + table + ") t";
+	}
 
 	public String deleteById(TableDescription table) {
 		return DELETE + FROM + table.getName() + whereByIdClause(table);

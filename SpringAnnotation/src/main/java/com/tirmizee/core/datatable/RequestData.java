@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author tirmizee
  *
  * wrapper for datatables.js
+ * https://datatables.net/manual/server-side
  * @param <T> search criteria
  */
 public class RequestData<T> {

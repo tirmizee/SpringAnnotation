@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
  * @author tirmizee
  * 
  * wrapper from datatables.js
+ * https://datatables.net/manual/server-side
  * @param <T>
  */
 public class ResponseData<T> {
@@ -39,31 +40,25 @@ public class ResponseData<T> {
 		this.draw = draw;
 	}
 
-
 	public Long getDraw() {
 		return draw;
 	}
-
 
 	public void setDraw(Long draw) {
 		this.draw = draw;
 	}
 
-
 	public Long getRecordsTotal() {
 		return recordsTotal;
 	}
-
 
 	public void setRecordsTotal(Long recordsTotal) {
 		this.recordsTotal = recordsTotal;
 	}
 
-
 	public Long getRecordsFiltered() {
 		return recordsFiltered;
 	}
-
 
 	public void setRecordsFiltered(Long recordsFiltered) {
 		this.recordsFiltered = recordsFiltered;

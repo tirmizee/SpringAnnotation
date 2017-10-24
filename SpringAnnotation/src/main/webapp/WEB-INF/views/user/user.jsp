@@ -49,7 +49,9 @@
 
     <!-- Main content -->
     <section class="content">
-    
+     	<input type="text" name="username">
+     	<input type="text" name="password">
+     	<input type="button" id="btnSearch" value="submit">
      <table id="example" class="display" cellspacing="0" width="100%"></table>
     
     </section>
@@ -71,6 +73,23 @@
 
 <script>
 $(document).ready(function() {
+	
+	var SearchValUsername,
+	    SearchValPasswword;
+	
+	var btnSearch = $('#btnSearch'),
+	    inputUsername = $('input[name="username"]'),
+	    inputPassword = $('input[name="password"]');
+	btnSearch.on('click',function(){
+		setSearchValues();
+		dataTable.ajax.reload();
+	});
+	
+	function setSearchValues() {
+		SearchValPasswword = inputPassword.val();
+		SearchValUsername = inputUsername.val();
+	}
+	
     var dataTable = $('#example').DataTable( {
         "processing"  : true,
         "colReorder"  : {
@@ -83,7 +102,7 @@ $(document).ready(function() {
             "type": "POST",
             contentType: 'application/json',
             "data": function ( d ) {
-            	d.search.val = "ssss";
+            	d.search.username = SearchValUsername;
             	alert(JSON.stringify(d));
                 return JSON.stringify(d);
               }
