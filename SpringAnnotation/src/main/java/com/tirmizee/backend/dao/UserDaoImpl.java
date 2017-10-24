@@ -6,13 +6,11 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.tirmizee.backend.user.data.CriteriaUserTable;
-import com.tirmizee.backend.user.data.UserTableDto;
 import com.tirmizee.jdbcrepository.sql.SqlGenerator;
 import com.tirmizee.repository.domain.UserRepository;
 import com.tirmizee.repository.domain.UserRepositoryImpl;
