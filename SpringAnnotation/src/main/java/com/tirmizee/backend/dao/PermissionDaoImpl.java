@@ -24,13 +24,14 @@ public class PermissionDaoImpl extends PermissionRepositoryImpl implements Permi
 		StringBuilder sql = new StringBuilder();
 		sql.append(SqlGenerator.SELECT).append(" permission.* ")
 			.append(SqlGenerator.FROM).append(" user ")
-			.append(" INNER JOIN ").append(" user_map_per ")
-			.append(" ON ").append(" user.ID = user_map_per.FK_USER_ID ")
+			.append(" INNER JOIN ").append(" user_map_permission ")
+			.append(" ON ").append(" user.ID = user_map_permission.USER_ID_FK ")
 			.append(" INNER JOIN ").append(" permission ")
-			.append(" ON ").append(" user_map_per.FK_PER_ID = permission.PER_ID ")
+			.append(" ON ").append(" user_map_permission.PER_ID_FK = permission.PER_ID ")
 			.append(SqlGenerator.WHERE).append(" user.USERNAME ").append(SqlGenerator.PARAM);
 		LOGGER.info(sql);
 		return getJdbcOps().query(sql.toString(), new Object[]{username}, MAPPER);
 	}
-
 }
+
+

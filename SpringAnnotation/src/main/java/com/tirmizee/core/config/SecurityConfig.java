@@ -69,6 +69,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new UserProfileService(userDao, permissionDao);
 	}
 	
-	
-	
 }

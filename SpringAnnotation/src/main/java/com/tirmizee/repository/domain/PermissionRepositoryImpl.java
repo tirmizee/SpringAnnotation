@@ -16,7 +16,7 @@ import com.tirmizee.repository.entities.Permission;
  */
 @Repository("PermissionRepository")
 public class PermissionRepositoryImpl extends AbstractJdbcRepository<Permission, Long> implements PermissionRepository {
-
+	
 	public PermissionRepositoryImpl(){
 		this("permission");
 	}

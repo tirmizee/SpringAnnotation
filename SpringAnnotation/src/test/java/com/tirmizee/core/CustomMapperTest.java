@@ -33,8 +33,8 @@ public class CustomMapperTest {
 		
 		//given
 		List<User> sources = new ArrayList<User>();
-		sources.add(new User(1l, "admin", "admin","","", new Date(), null));
-		sources.add(new User(2l, "user", "user", "","",new Date(), null));
+		sources.add(new User(1l, "admin", "admin","","","A", new Date(), null));
+		sources.add(new User(2l, "user", "user", "","","A",new Date(), null));
 		
 		//when
 		List<User> destination = mapper.map(sources, User.class);

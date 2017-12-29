@@ -1,4 +1,4 @@
-package com.tirmizee.backend.page;
+package com.tirmizee.backend.page.root;
 
 import java.io.Serializable;
 

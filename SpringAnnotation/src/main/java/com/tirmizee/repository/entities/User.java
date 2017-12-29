@@ -19,21 +19,28 @@ public class User implements Persistable<Long> {
 	private String password;
 	private String firstname;
 	private String lastname;
+	private String status;
 	private Date create_date;
 	private Date update_date;
 	
 	public User() {}
 
-	public User(Long id, String username, String password, String firstname, String lastname, Date create_date,
-			Date update_date) {
+	
+
+
+	public User(Long id, String username, String password, String firstname, String lastname, String status,
+			Date create_date, Date update_date) {
+		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.status = status;
 		this.create_date = create_date;
 		this.update_date = update_date;
 	}
+
 
 
 
@@ -67,6 +74,15 @@ public class User implements Persistable<Long> {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getCreate_date() {

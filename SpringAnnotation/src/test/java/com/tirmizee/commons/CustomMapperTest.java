@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.tirmizee.backend.user.data.UserTableDto;
+import com.tirmizee.backend.service.user.data.UserTableDto;
 import com.tirmizee.core.commons.CustomMapper;
 import com.tirmizee.core.config.AppConfig;
 import com.tirmizee.repository.entities.User;
@@ -34,7 +34,7 @@ public class CustomMapperTest {
 	public void trueWhenMapperClass(){
 		
 		// given
-		User user = new User(1l, "admin", "123456","","", new Date(), new Date());
+		User user = new User(1l, "admin", "123456","","","A" ,new Date(), new Date());
 		
 		//when
 		UserTableDto userDto = mapper.map(user, UserTableDto.class);
@@ -44,7 +44,6 @@ public class CustomMapperTest {
 		assertThat(user.getUpdate_date()).isEqualTo(userDto.getUpdate_date());
 		assertThat(user.getId()).isEqualTo(userDto.getId());
 		assertThat(user.getUsername()).isEqualTo(userDto.getUsername());
-		assertThat(user.getPassword()).isEqualTo(userDto.getPassword());
 	}
  	
 	@Test
@@ -53,7 +52,7 @@ public class CustomMapperTest {
 		// given
 		List<User> listOfUser = new ArrayList<>();
 		for (long i = 0; i < 5; i++) {
-			listOfUser.add(new User(i, "admin" + i, "123456"+ i,"","", new Date(), new Date()));
+			listOfUser.add(new User(i, "admin" + i, "123456"+ i,"","","A", new Date(), new Date()));
 		}
 		Iterator<User> users = listOfUser.iterator();
 		
@@ -72,7 +71,6 @@ public class CustomMapperTest {
 				assertThat(user.getUpdate_date()).isEqualTo(userDto.getUpdate_date());
 				assertThat(user.getId()).isEqualTo(userDto.getId());
 				assertThat(user.getUsername()).isEqualTo(userDto.getUsername());
-				assertThat(user.getPassword()).isEqualTo(userDto.getPassword());
 				users.remove();
 				userDtos.remove();
 				break;

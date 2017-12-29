@@ -72,7 +72,7 @@
 	<div class="container" style="margin-top: 12%" >
 		<c:if test="${not empty error}">
 			<div id="errorMsg"  class="alert alert-danger" align="center">
-			<a href="#" class="close" onclick="$('#errorMsg').hide()">&times;</a>
+			<a href="#" class="close" onclick="$('#errorMsg').hide()"> &times;</a>
 				 ชื่อผู้ใช้ หรือรหัสผ่าน <strong>ไม่ถูกต้อง</strong>
 			</div>
 		</c:if>

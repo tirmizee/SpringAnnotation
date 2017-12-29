@@ -1,4 +1,4 @@
-package com.tirmizee.backend.user.data;
+package com.tirmizee.backend.service.user.data;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,11 +17,8 @@ public class UserTableDto implements Serializable {
 	@SortColumns("ID")
 	private Long id;
 	
-	@SortColumns({"USERNAME","PASSWORD"})
+	@SortColumns("USERNAME")
 	private String username;
-	
-	@SortColumns("PASSWORD")
-	private String password;
 	
 	@SortColumns("FIRSTNAME")
 	private String firstname;
@@ -29,11 +26,18 @@ public class UserTableDto implements Serializable {
 	@SortColumns("LASTNAME")
 	private String lastname;
 	
+	@SortColumns({"FIRSTNAME","LASTNAME"})
+	private String fullname;
+	
+	@SortColumns("STATUS")
+	private String status;
+	
 	@SortColumns("CREATE_DATE")
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date create_date;
 	
 	private Date update_date;
+	
 	
 	public Long getId() {
 		return id;
@@ -47,12 +51,6 @@ public class UserTableDto implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getFirstname() {
 		return firstname;
 	}
@@ -65,8 +63,20 @@ public class UserTableDto implements Serializable {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+	public String getFullname() {
+		return firstname.concat(" ").concat(lastname);
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
 	public Date getCreate_date() {
 		return create_date;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;

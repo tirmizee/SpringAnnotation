@@ -30,8 +30,8 @@
 <body class="hold-transition skin-purple sidebar-mini">
 <div class="wrapper">
 
-  <jsp:include page="../tenplate/header.jsp" />
-  <jsp:include page="../tenplate/menu_sidebar_user.jsp" />
+  <jsp:include page="../template/header.jsp" />
+  <jsp:include page="../template/menu_sidebar_user.jsp" />
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -61,7 +61,7 @@
 
   
 
-  <jsp:include page="../tenplate/footer.jsp" />
+  <jsp:include page="../template/footer.jsp" />
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -112,7 +112,7 @@ $(document).ready(function() {
             { "data": "id" },
             { "data": null          ,title :"ลำดับ" },
             { "data": "username"    ,title :"ชื่อผู้ใช้" },
-            { "data": "firstname"    ,title :"ชื่อ" },
+            { "data": "firstname"   ,title :"ชื่อ" },
             { "data": "lastname"    ,title:"นามสกุล"  },
             { "data": "create_date" ,title:"วันที่สร้าง" },
             { "data": "update_date" ,title:"วันที่แก้ไข"},

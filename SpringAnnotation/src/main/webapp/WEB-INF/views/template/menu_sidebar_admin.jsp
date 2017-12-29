@@ -5,7 +5,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="resources/libs/admin-lte2/img/admin.png" class="img-circle" alt="User Image">
+          <img src="${pageContext.request.contextPath}/resources/libs/admin-lte2/img/admin.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>${user}</p>
@@ -18,7 +18,6 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         
-       
         <li class="active treeview" >
           <a href="#">
             <i class="fa fa-briefcase" style="height: 20px;"></i>
@@ -28,24 +27,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> permission </a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/permission"><i class="fa fa-circle-o"></i> permission </a></li>
            
           </ul>
         </li>
        
-       
-        <li>
-          <a href="#">
-            <i class="fa fa-calendar" style="height: 20px;"></i> <span>Calendar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">1</small>
-              
-            </span>
-          </a>
-        </li>
-       
-       
-         </ul>
+       </ul>
        
          
     </section>

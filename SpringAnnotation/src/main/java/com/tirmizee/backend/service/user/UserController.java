@@ -1,4 +1,4 @@
-package com.tirmizee.backend.user;
+package com.tirmizee.backend.service.user;
 
 import javax.validation.Valid;
 
@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tirmizee.backend.dao.UserDao;
-import com.tirmizee.backend.user.data.CriteriaUserTable;
-import com.tirmizee.backend.user.data.UserTableDto;
+import com.tirmizee.backend.service.UserService;
+import com.tirmizee.backend.service.user.data.CriteriaUser;
+import com.tirmizee.backend.service.user.data.UserStatus;
+import com.tirmizee.backend.service.user.data.UserTableDto;
 import com.tirmizee.core.commons.CustomMapper;
 import com.tirmizee.core.datatable.BuildPageRequest;
 import com.tirmizee.core.datatable.RequestData;
 import com.tirmizee.core.datatable.ResponseData;
-import com.tirmizee.repository.entities.User;
 
 /**
  * @author tirmizee
@@ -35,17 +36,24 @@ public class UserController {
 	UserDao userDao;
 	
 	@Autowired
+	UserService userService; 
+	
+	@Autowired
 	CustomMapper mapper;
 	
 	@ResponseBody
 	@RequestMapping(value = "/findAll", method = RequestMethod.POST, headers = "Accept=application/json")
-	public ResponseData<UserTableDto> findAll(@Valid @RequestBody RequestData<CriteriaUserTable> requestData) {
-		LOG.info(requestData.getSerch().getUsername());
+	public ResponseData<UserTableDto> findAll(@Valid @RequestBody RequestData<CriteriaUser> requestData) {
 		PageRequest pageRequest = BuildPageRequest.build(requestData,UserTableDto.class);
-		Page<User> page = userDao.findByAllFields(pageRequest, requestData.getSerch());
-		return new ResponseData<UserTableDto>(mapper.map(page, UserTableDto.class));
+		Page<UserTableDto> page = userDao.findByAllFields(pageRequest, requestData.getSerch());
+		return new ResponseData<UserTableDto>(page);
 	}
 	
-
+	@ResponseBody
+	@RequestMapping(value = "/updateStatus" , method = RequestMethod.POST, headers = "Accept=application/json")
+	public boolean updateStatus(@Valid @RequestBody UserStatus userStatus) {
+		LOG.debug(userStatus.getId() + " : " + userStatus.getStatus());
+		return userDao.updateStatus(userStatus);
+	}
 	
 }

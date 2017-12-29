@@ -30,8 +30,8 @@
 <body class="hold-transition skin-green sidebar-mini">
   <div class="wrapper">
 
-    <jsp:include page="../tenplate/header.jsp" />
-    <jsp:include page="../tenplate/menu_sidebar_admin.jsp" />
+    <jsp:include page="../template/header.jsp" />
+    <jsp:include page="../template/menu_sidebar_admin.jsp" />
 
 
     <!-- Content Wrapper. Contains page content -->
@@ -96,7 +96,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-   <jsp:include page="../tenplate/footer.jsp" />
+   <jsp:include page="../template/footer.jsp" />
 
     <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed

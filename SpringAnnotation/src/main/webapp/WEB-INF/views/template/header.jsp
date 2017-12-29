@@ -19,13 +19,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="resources/libs/admin-lte2/img/user.png" class="user-image" alt="User Image">
+              <img src="${pageContext.request.contextPath}/resources/libs/admin-lte2/img/user.png" class="user-image" alt="User Image">
               <span class="hidden-xs">${sessionScope.user.firstName} ${sessionScope.user.lastName}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="resources/libs/admin-lte2/img/user.png" class="img-circle" alt="User Image">
+                <img src="${pageContext.request.contextPath}/resources/libs/admin-lte2/img/user.png" class="img-circle" alt="User Image">
                 <p>
                   ${sessionScope.user.firstName} ${sessionScope.user.lastName} - Web Developer
                   <small>Member since Nov. 2012</small>
@@ -39,7 +39,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="${pageContext.request.contextPath}/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li><!-- end Menu Footer-->
             </ul>
