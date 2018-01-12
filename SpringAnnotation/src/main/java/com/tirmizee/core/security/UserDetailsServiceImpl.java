@@ -22,14 +22,15 @@ import com.tirmizee.repository.entities.User;
  *
  */
 
-public class UserProfileService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-	private static final Logger LOGGER = Logger.getLogger(UserProfileService.class);
+	private static final Logger LOGGER = Logger.getLogger(UserDetailsServiceImpl.class);
 
 	private UserDao userDao;
 	private PermissionDao permissionDao;
+	private UserProfile userProfile;
 	
-	public UserProfileService(UserDao userDao, PermissionDao permissionDao) {
+	public UserDetailsServiceImpl(UserDao userDao, PermissionDao permissionDao) {
 		this.userDao = userDao;
 		this.permissionDao = permissionDao;
 	}
@@ -37,14 +38,21 @@ public class UserProfileService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userDao.findByUsername(username);
-		if (user == null) {
-			return null;
-		}
+		if (user == null) {	return null; }
+		username = user.getUsername();
 		List<Permission> permissions = permissionDao.findByUsername(username);
 		Set<GrantedAuthority> authorities = getAuthorities(permissions);
-		return new UserProfile(user.getUsername(), user.getPassword(), authorities);
+		this.userProfile = new UserProfile(user.getUsername(), user.getPassword(), authorities);
+		this.userProfile.setFirstName(user.getFirstname());
+		this.userProfile.setLastName(user.getLastname());
+		this.userProfile.setStatus(user.getStatus());
+		return userProfile;
 	}
 	
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
 	private Set<GrantedAuthority> getAuthorities(Collection<Permission> permissions){
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
         for(Permission permission : permissions) {
@@ -53,6 +61,5 @@ public class UserProfileService implements UserDetailsService {
         LOGGER.debug("user authorities are " + authorities.toString());
 	    return authorities;
 	}
-	
 
 }

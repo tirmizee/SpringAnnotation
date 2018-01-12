@@ -1,5 +1,8 @@
 package com.tirmizee.core.config;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -7,6 +10,14 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  *
  */
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+	
+	
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		super.onStartup(servletContext);
+		servletContext.addListener(SessionListenerConfig.class);
+	}
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -26,5 +37,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected String[] getServletMappings() {
 		return new String[]{ "/" };
 	}
+	
+	
 
 }

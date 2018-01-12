@@ -38,7 +38,6 @@ public class UserTableDto implements Serializable {
 	
 	private Date update_date;
 	
-	
 	public Long getId() {
 		return id;
 	}

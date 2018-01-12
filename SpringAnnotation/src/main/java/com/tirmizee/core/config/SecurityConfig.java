@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.tirmizee.backend.dao.PermissionDao;
 import com.tirmizee.backend.dao.UserDao;
 import com.tirmizee.core.security.SecuritySuccessHandler;
-import com.tirmizee.core.security.UserProfileService;
+import com.tirmizee.core.security.UserDetailsServiceImpl;
 
 /**
  * @author tirmizee
@@ -58,15 +58,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.csrf().disable()
 		.authorizeRequests()
-		.anyRequest().authenticated()
-		.and()
+		.anyRequest().authenticated().and()
 	    .formLogin().loginPage("/login").permitAll()
 	    .successHandler(successHandler);
 	}
 
 	@Override
 	protected UserDetailsService userDetailsService() {
-		return new UserProfileService(userDao, permissionDao);
+		return new UserDetailsServiceImpl(userDao, permissionDao);
 	}
 	
 }

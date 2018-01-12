@@ -15,6 +15,10 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author pratyay
+ *
+ */
 @Component
 public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
 
@@ -36,7 +40,7 @@ public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
 		} else {
 		    throw new IllegalStateException("not found url succuess handler");
 		}
-	    }
+	}
 	
 	private boolean isAdmin(Collection<String> authorities){
 		return authorities.contains("AD000");

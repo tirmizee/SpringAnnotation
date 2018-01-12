@@ -34,7 +34,7 @@ public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 	public User findByUsername(String username) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(SqlGenerator.SELECT).append(" * ")
-			.append(SqlGenerator.FROM).append(UserRepository.USER)
+			.append(SqlGenerator.FROM).append(UserRepository.T_USER)
 			.append(SqlGenerator.WHERE)
 			.append(" USERNAME ").append(SqlGenerator.PARAM);
 		LOGGER.info(sql);
@@ -88,14 +88,14 @@ public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 		return page;
 	}
 	
-	public static final RowMapper<UserTableDto> USER_TABLE_MAPPER = new RowMapper<UserTableDto>() {
+	private static final RowMapper<UserTableDto> USER_TABLE_MAPPER = new RowMapper<UserTableDto>() {
 		
 		@Override
 		public UserTableDto mapRow(ResultSet rs, int arg1) throws SQLException {
 			UserTableDto result = new UserTableDto();
-			result.setId(rs.getLong(ID));
-			result.setUsername(rs.getString(USERNAME));
-			result.setFirstname(rs.getString(FIRSTNAME));
+			result.setId(rs.getLong(C_ID));
+			result.setUsername(rs.getString(C_USERNAME));
+			result.setFirstname(rs.getString(C_FIRSTNAME));
 			result.setLastname(rs.getString(LASTNAME));
 			result.setStatus(rs.getString(STATUS));
 			result.setCreate_date(rs.getDate(CREATE_DATE));

@@ -15,24 +15,23 @@
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-     
+     	  
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="${pageContext.request.contextPath}/resources/libs/admin-lte2/img/user.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">${sessionScope.user.firstName} ${sessionScope.user.lastName}</span>
+              <span class="hidden-xs">${user.firstName} ${user.lastName}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="${pageContext.request.contextPath}/resources/libs/admin-lte2/img/user.png" class="img-circle" alt="User Image">
                 <p>
-                  ${sessionScope.user.firstName} ${sessionScope.user.lastName} - Web Developer
+                  ${user.firstName} ${user.lastName} - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li> <!--end User image -->
            
-             
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">

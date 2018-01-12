@@ -1,47 +1,42 @@
 package com.tirmizee.core.security;
 
-import java.util.Collection;
-
-import org.springframework.security.core.GrantedAuthority;
+import java.io.Serializable;
 
 /**
  * @author pratyay
+ *
  */
-public class UserProfile extends UserDetailsImpl {
+public class UserProfileDto implements Serializable {
 
+	private static final long serialVersionUID = -9042083437700637955L;
+	private String username;
 	private String firstName;
-	private String lastName;
+	private String LastName;
 	private String status;
 	
-	private static final long serialVersionUID = -7754272160516251910L;
-
-	public UserProfile(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-		super(username, password, authorities);
-		
+	public String getUsername() {
+		return username;
 	}
-
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 	public String getLastName() {
-		return lastName;
+		return LastName;
 	}
-
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		LastName = lastName;
 	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	 
 }

@@ -8,8 +8,8 @@
         <img src="resources/libs/admin-lte2/img/user.png" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>${name} ${sessionScope.user.lastName}</p>
-        <a href="">${sessionScope.user.roleName}</a>
+        <p>${user.firstName} ${user.lastName}</p>
+        <a href="">${user.username}</a>
       </div>
     </div>    
     <!-- /.search form -->
