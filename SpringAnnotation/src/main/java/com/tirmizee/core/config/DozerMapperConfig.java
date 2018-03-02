@@ -18,4 +18,6 @@ public class DozerMapperConfig {
 	public CustomMapper getCustomMapper(){
 		return new CustomMapper(Arrays.asList("dozer-config.xml"));
 	}
+
+	
 }

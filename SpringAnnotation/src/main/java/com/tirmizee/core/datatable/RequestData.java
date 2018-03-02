@@ -26,7 +26,6 @@ public class RequestData<T> {
 	protected List<OrderData> orders;
 	protected List<ColumnData> columns;
 	
-	
 	public long getDraw() {
 		return draw;
 	}

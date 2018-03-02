@@ -15,12 +15,19 @@
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-     	  
+     	   <!-- Tasks: style can be found in dropdown.less -->
+          <li class="dropdown tasks-menu">
+            <a id="aLanguage" href="#" class="dropdown-toggle">
+              <i class="fa fa-language " style="height: 20px;font-size:20px"></i>
+              <span id="spLanguage" class="label label-warning">${pageContext.response.locale}</span>
+            </a>
+           
+          </li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="${pageContext.request.contextPath}/resources/libs/admin-lte2/img/user.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">${user.firstName} ${user.lastName}</span>
+              <span class="hidden-xs">${user.username}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -43,10 +50,32 @@
               </li><!-- end Menu Footer-->
             </ul>
           </li> <!--end User Account: style can be found in dropdown.less -->
-          
-          
         </ul>
       </div>  <!--end Navbar Right Menu -->
-
     </nav>
   </header>
+  
+<script>
+var SpringHeader = function(){
+	
+	var handleLanguage = function () {
+		$splanguage =  $('#spLanguage');
+		$splanguage.text($splanguage.text().toUpperCase());
+		
+		$alanguage = $('#aLanguage');
+		$alanguage.on('click',function(){
+			window.location = "?lang=" + ($splanguage.text() == 'TH' ? "en" : "th");
+		});
+	}
+	
+	return {
+		init : function() {
+			handleLanguage();
+		}
+	}
+}();
+
+$(document).ready(function() {
+	SpringHeader.init();
+});
+</script>

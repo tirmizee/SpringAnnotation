@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -23,7 +24,11 @@
   <script src="resources/libs/validate-form-master/js/formValidation.popular.min.js"></script>
   <script src="resources/libs/validate-form-master/js/framework/bootstrap.min.js"></script>
   <style >
-
+	/* .main-sidebar { background-color: #333 !important }
+	.sidebar-menu>li>.treeview-menu {
+	    
+	    background: #3d8420 !important
+	} */
   </style>
   <title>Hello JSP</title>
 </head>
@@ -43,53 +48,15 @@
           <small>Version 0.1</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home ${pageContext.response.locale}</a></li>
           <li class="active">Dashboard</li>
         </ol>
       </section>
 
       <!-- Main content -->
       <section class="content">
-<button id="btn">click</button>
-<form id="bookForm" method="post" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-xs-1 control-label">Book</label>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" name="book[0].title" placeholder="Title" />
-        </div>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" name="book[0].isbn" placeholder="ISBN" />
-        </div>
-        <div class="col-xs-2">
-            <input type="text" class="form-control" name="book[0].price" placeholder="Price" />
-        </div>
-        <div class="col-xs-1">
-            <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
-        </div>
-    </div>
 
-    <!-- The template for adding new field -->
-    <div class="form-group hide" id="bookTemplate">
-        <div class="col-xs-4 col-xs-offset-1">
-            <input type="text" class="form-control" name="title" placeholder="Title" />
-        </div>
-        <div class="col-xs-4">
-            <input type="text" class="form-control" name="isbn" placeholder="ISBN" />
-        </div>
-        <div class="col-xs-2">
-            <input type="text" class="form-control" name="price" placeholder="Price" />
-        </div>
-        <div class="col-xs-1">
-            <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-xs-5 col-xs-offset-1">
-            <button type="submit" class="btn btn-default">Submit</button>
-        </div>
-    </div>
-</form>
 
       </section>
       <!-- /.content -->
@@ -108,124 +75,21 @@
 
 
 <script>
+var SpringAdminIdex = function(){
+	
+	var handleActiveMenu = function () {
+		 $('ul.sidebar-menu > li.menu-index').addClass('active');
+	}
+	
+	return {
+		init : function() {
+			handleActiveMenu();
+		}
+	}
+}();
+
 $(document).ready(function() {
-	
-	
-
-	$('#btn').on('click',function(){
-		alert($("input[name='dueDate[]']").val());
-	});
-	
-	  var titleValidators = {
-	            row: '.col-xs-4',   // The title is placed inside a <div class="col-xs-4"> element
-	            validators: {
-	                notEmpty: {
-	                    message: 'The title is required'
-	                }
-	            }
-	        },
-	        isbnValidators = {
-	            row: '.col-xs-4',
-	            validators: {
-	                notEmpty: {
-	                    message: 'The ISBN is required'
-	                },
-	                isbn: {
-	                    message: 'The ISBN is not valid'
-	                }
-	            }
-	        },
-	        priceValidators = {
-	            row: '.col-xs-2',
-	            validators: {
-	                notEmpty: {
-	                    message: 'The price is required'
-	                },
-	                numeric: {
-	                    message: 'The price must be a numeric number'
-	                }
-	            }
-	        },
-	        bookIndex = 0;
-
-	    $('#bookForm')
-	        .formValidation({
-	            framework: 'bootstrap',
-	            icon: {
-	                valid: 'glyphicon glyphicon-ok',
-	                invalid: 'glyphicon glyphicon-remove',
-	                validating: 'glyphicon glyphicon-refresh'
-	            },
-	            fields: {
-	                'book[0].title': titleValidators,
-	                'book[0].isbn': isbnValidators,
-	                'book[0].price': priceValidators
-	            }
-	        })
-
-	        // Add button click handler
-	        .on('click', '.addButton', function() {
-	            bookIndex++;
-	            var $template = $('#bookTemplate'),
-	                $clone    = $template
-	                                .clone()
-	                                .removeClass('hide')
-	                                .removeAttr('id')
-	                                .attr('data-book-index', bookIndex)
-	                                .insertBefore($template);
-
-	            // Update the name attributes
-	            $clone
-	                .find('[name="title"]').attr('name', 'book[' + bookIndex + '].title').end()
-	                .find('[name="isbn"]').attr('name', 'book[' + bookIndex + '].isbn').end()
-	                .find('[name="price"]').attr('name', 'book[' + bookIndex + '].price').end();
-
-	            // Add new fields
-	            // Note that we also pass the validator rules for new field as the third parameter
-	            $('#bookForm')
-	                .formValidation('addField', 'book[' + bookIndex + '].title', titleValidators)
-	                .formValidation('addField', 'book[' + bookIndex + '].isbn', isbnValidators)
-	                .formValidation('addField', 'book[' + bookIndex + '].price', priceValidators);
-	        })
-
-	        // Remove button click handler
-	        .on('click', '.removeButton', function() {
-	            var $row  = $(this).parents('.form-group'),
-	                index = $row.attr('data-book-index');
-	            // Remove fields
-	            $('#bookForm')
-	                .formValidation('removeField', $row.find('[name="book[' + index + '].title"]'))
-	                .formValidation('removeField', $row.find('[name="book[' + index + '].isbn"]'))
-	                .formValidation('removeField', $row.find('[name="book[' + index + '].price"]'));
-
-	            // Remove element containing the fields
-	            $row.remove();
-	        })
-     .on('success.form.fv', function(e) {
-            e.preventDefault();
-            var list = [];
-            var ob = {};
-            for (var i = 0; i < bookIndex+1; i++) {
-            	if($("input[name='book[" + i + "].title']").val()){
-            		list.push({
-            			title : $("input[name='book[" + i + "].title']").val()
-            		});
-            	}
-			}
-            ob.datas = list;
-            alert(JSON.stringify(list));
-            $.ajax({
-            	  method: "POST",
-            	  url: "service/test",
-            	  contentType: 'application/json',
-            	  data :  JSON.stringify(ob),
-            	  success : function (data) {
-						alert(JSON.stringify(data));
-					}
-            });
-
-     });
-
+	SpringAdminIdex.init();
 });
 </script>
 </body>

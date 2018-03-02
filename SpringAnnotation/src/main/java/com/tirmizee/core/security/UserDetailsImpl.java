@@ -2,7 +2,6 @@ package com.tirmizee.core.security;
 
 import java.util.Collection;
 
-import org.apache.log4j.Logger;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,13 +13,11 @@ public class UserDetailsImpl implements UserDetails {
 	
 	private static final long serialVersionUID = -3739827555840905814L;
 	
-	private static Logger LOG = Logger.getLogger(UserProfile.class);
 	private String username;
 	private String password;
 	private Collection<? extends GrantedAuthority> authorities;
 	
 	public UserDetailsImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-		LOG.debug("a");
 		this.username = username;
 		this.password = password;
 		this.authorities = authorities;

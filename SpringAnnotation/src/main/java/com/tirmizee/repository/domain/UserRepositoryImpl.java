@@ -12,10 +12,6 @@ import com.tirmizee.jdbcrepository.AbstractJdbcRepository;
 import com.tirmizee.jdbcrepository.RowUnmapper;
 import com.tirmizee.repository.entities.User;
 
-/**
- * @author tirmizee
- *
- */
 @Repository("UserRepository")
 public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> implements UserRepository {
 	
@@ -36,10 +32,11 @@ public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> imple
 					rs.getString(C_USERNAME),
 					rs.getString(C_PASSWORD),
 					rs.getString(C_FIRSTNAME),
-					rs.getString(LASTNAME),
-					rs.getString(STATUS),
-					rs.getDate(CREATE_DATE),
-					rs.getDate(UPDATE_DATE));
+					rs.getString(C_LASTNAME),
+					rs.getString(C_STATUS),
+					rs.getLong(C_ROLE_ID_FK),
+					rs.getDate(C_CREATE_DATE),
+					rs.getDate(C_UPDATE_DATE));
 		}
 	};
 	
@@ -52,10 +49,11 @@ public class UserRepositoryImpl extends AbstractJdbcRepository<User, Long> imple
 			map.put(C_USERNAME, param.getUsername());
 			map.put(C_PASSWORD, param.getPassword());
 			map.put(C_FIRSTNAME, param.getFirstname());
-			map.put(LASTNAME, param.getLastname());
-			map.put(STATUS, param.getStatus());
-			map.put(CREATE_DATE, param.getCreate_date());
-			map.put(UPDATE_DATE, param.getUpdate_date());
+			map.put(C_LASTNAME, param.getLastname());
+			map.put(C_STATUS, param.getStatus());
+			map.put(C_ROLE_ID_FK, param.getRoleIdFk());
+			map.put(C_CREATE_DATE, param.getCreate_date());
+			map.put(C_UPDATE_DATE, param.getUpdate_date());
 			return map;
 		}
 	};

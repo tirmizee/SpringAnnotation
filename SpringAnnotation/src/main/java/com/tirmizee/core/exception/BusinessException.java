@@ -2,7 +2,7 @@ package com.tirmizee.core.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class BusinessException  extends RuntimeException   {
+public class BusinessException extends RuntimeException   {
 
 	private HttpStatus status;
 	

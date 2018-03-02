@@ -37,7 +37,7 @@ public class RepositoryConfig {
 		return new HikariDataSource(config);
 	}
 	
-	 @Bean
+	 @Bean("txManager")
      public PlatformTransactionManager txManager() {
          return new DataSourceTransactionManager(dataSource());
      }

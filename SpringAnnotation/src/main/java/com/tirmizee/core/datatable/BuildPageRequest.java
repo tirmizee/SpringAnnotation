@@ -12,10 +12,6 @@ import org.springframework.data.domain.Sort.Order;
 
 import com.tirmizee.core.annotaion.SortColumns;
 
-/**
- * @author tirmizee
- *
- */
 public class BuildPageRequest {
 	
 	public static  PageRequest build(RequestData<?> requestData,Class<?> clazz){

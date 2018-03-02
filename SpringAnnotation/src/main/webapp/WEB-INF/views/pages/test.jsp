@@ -247,7 +247,7 @@ div.dt-buttons {
     </div>
     <!-- /.box -->
   </div>
-</div>
+ </div>
 </div>
 
 
@@ -442,7 +442,8 @@ var SpringPermission = function() {
 	            },
 				error: function (xhr, textStatus, errorThrown) {
 				    switch (xhr.status) {
-				        case 404: alert(JSON.stringify(xhr));break;
+				  	  	case 302: alert(JSON.stringify(xhr));break;
+				    	case 404: alert(JSON.stringify(xhr));break;
 				    }
 				}
 	        },
@@ -610,7 +611,7 @@ var SpringPermission = function() {
 	
 	var handleActiveMenu = function() {
 		 $('ul.sidebar-menu > li.menu-role').addClass('active');
-		 $('ul.sidebar-menu > li.menu-role > ul.treeview-menu > li.permission').addClass('active');
+		 $('ul.sidebar-menu > li.menu-role > ul.treeview-menu > li.test').addClass('active');
 	}
 	
 	return { 

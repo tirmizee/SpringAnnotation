@@ -28,26 +28,6 @@ public class CustomMapperTest {
 	@Autowired 
 	CustomMapper mapper;
 	
-	@Test
-	public void containsAllField_WhenMapperList(){
-		
-		//given
-		List<User> sources = new ArrayList<User>();
-		sources.add(new User(1l, "admin", "admin","","","A", new Date(), null));
-		sources.add(new User(2l, "user", "user", "","","A",new Date(), null));
-		
-		//when
-		List<User> destination = mapper.map(sources, User.class);
-
-		//then
-		assertThat(destination).isNotEmpty();
-		assertThat(destination).hasSize(sources.size());
-		for (int i = 0; i < destination.size(); i++) {
-			assertThat(destination.get(i)).isEqualToComparingFieldByField(sources.get(i));
-		}
-		
-	}
-	
 	
 	
 	

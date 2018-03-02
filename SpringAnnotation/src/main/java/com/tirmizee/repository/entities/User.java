@@ -20,16 +20,14 @@ public class User implements Persistable<Long> {
 	private String firstname;
 	private String lastname;
 	private String status;
+	private Long roleIdFk;
 	private Date create_date;
 	private Date update_date;
 	
 	public User() {}
 
-	
-
-
 	public User(Long id, String username, String password, String firstname, String lastname, String status,
-			Date create_date, Date update_date) {
+			Long roleIdFk, Date create_date, Date update_date) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -37,10 +35,10 @@ public class User implements Persistable<Long> {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.status = status;
+		this.roleIdFk = roleIdFk;
 		this.create_date = create_date;
 		this.update_date = update_date;
 	}
-
 
 
 
@@ -103,6 +101,14 @@ public class User implements Persistable<Long> {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public Long getRoleIdFk() {
+		return roleIdFk;
+	}
+
+	public void setRoleIdFk(Long roleIdFk) {
+		this.roleIdFk = roleIdFk;
 	}
 
 	@Override

@@ -18,7 +18,7 @@ import com.tirmizee.core.security.UserProfileDto;
 @Controller
 public class UserPageController {
 
-	private static Logger LOG = Logger.getLogger(AdminPageController.class);
+	private static Logger LOGGER = Logger.getLogger(AdminPageController.class);
 	private UserProfile userProfile;
 	
 	@Autowired 

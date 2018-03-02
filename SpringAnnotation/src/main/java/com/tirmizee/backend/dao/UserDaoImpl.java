@@ -64,23 +64,19 @@ public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 				.append(SqlGenerator.WHERE)
 				.append(" ID IS NOT NULL ");
 				if (criteria.getUserName() != null) {
-					select.append(SqlGenerator.AND)
-					.append(" USERNAME LIKE ?");
+					select.append(SqlGenerator.AND).append(" USERNAME LIKE ?");
 					params.add("%" + StringUtils.trimToEmpty(criteria.getUserName()) + "%");
 				}
 				if (criteria.getFirstName() != null) {
-					select.append(SqlGenerator.AND)
-					.append(" FIRSTNAME LIKE ?");
+					select.append(SqlGenerator.AND).append(" FIRSTNAME LIKE ?");
 					params.add("%" + StringUtils.trimToEmpty(criteria.getFirstName()) + "%");
 				}
 				if (criteria.getLastName() != null) {
-					select.append(SqlGenerator.AND)
-					.append(" LASTNAME LIKE ?");
+					select.append(SqlGenerator.AND).append(" LASTNAME LIKE ?");
 					params.add("%" + StringUtils.trimToEmpty(criteria.getLastName()) + "%");
 				}
 				if (criteria.getStatus() != null) {
-					select.append(SqlGenerator.AND)
-					.append(" STATUS = ?");
+					select.append(SqlGenerator.AND).append(" STATUS = ?");
 					params.add(StringUtils.trimToEmpty(criteria.getStatus()));
 				}
 				long count = count(select.toString(), params.toArray());
@@ -96,10 +92,10 @@ public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 			result.setId(rs.getLong(C_ID));
 			result.setUsername(rs.getString(C_USERNAME));
 			result.setFirstname(rs.getString(C_FIRSTNAME));
-			result.setLastname(rs.getString(LASTNAME));
-			result.setStatus(rs.getString(STATUS));
-			result.setCreate_date(rs.getDate(CREATE_DATE));
-			result.setUpdate_date(rs.getDate(UPDATE_DATE));
+			result.setLastname(rs.getString(C_LASTNAME));
+			result.setStatus(rs.getString(C_STATUS));
+			result.setCreate_date(rs.getDate(C_CREATE_DATE));
+			result.setUpdate_date(rs.getDate(C_UPDATE_DATE));
 			return  result;
 		}
 	};
@@ -108,11 +104,11 @@ public class UserDaoImpl extends UserRepositoryImpl implements UserDao {
 	public boolean updateStatus(UserStatus userStatus) {
 		StringBuilder sql = new StringBuilder();
 		List<Object> params = new LinkedList<>();
-		sql.append("update user set STATUS");
-		sql.append(SqlGenerator.PARAM);
+		sql.append("update user set STATUS")
+		   .append(SqlGenerator.PARAM);
 		params.add(StringUtils.trimToEmpty(userStatus.getStatus()));
-		sql.append(SqlGenerator.WHERE);
-		sql.append(" ID ").append(SqlGenerator.PARAM);
+		sql.append(SqlGenerator.WHERE)
+		   .append(" ID ").append(SqlGenerator.PARAM);
 		params.add(userStatus.getId());
 		return getJdbcOps().update(sql.toString(), params.toArray()) > 0;
 	}

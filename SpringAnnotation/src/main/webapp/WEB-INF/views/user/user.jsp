@@ -49,11 +49,7 @@
 
     <!-- Main content -->
     <section class="content">
-     	<input type="text" name="username">
-     	<input type="text" name="password">
-     	<input type="button" id="btnSearch" value="submit">
-     <table id="example" class="display" cellspacing="0" width="100%"></table>
-    
+     	
     </section>
     <!-- /.content -->
   </div>
@@ -74,65 +70,6 @@
 <script>
 $(document).ready(function() {
 	
-	var SearchValUsername,
-	    SearchValPasswword;
-	
-	var btnSearch = $('#btnSearch'),
-	    inputUsername = $('input[name="username"]'),
-	    inputPassword = $('input[name="password"]');
-	btnSearch.on('click',function(){
-		setSearchValues();
-		dataTable.ajax.reload();
-	});
-	
-	function setSearchValues() {
-		SearchValPasswword = inputPassword.val();
-		SearchValUsername = inputUsername.val();
-	}
-	
-    var dataTable = $('#example').DataTable( {
-        "processing"  : true,
-        "colReorder"  : {
-							fixedColumnsLeft: 1
-						},
-        "serverSide" : true,
-        "searching"  : false,
-        "ajax": {
-            "url": "service/user/findAll",
-            "type": "POST",
-            contentType: 'application/json',
-            "data": function ( d ) {
-            	d.search.username = SearchValUsername;
-            	alert(JSON.stringify(d));
-                return JSON.stringify(d);
-              }
-        },
-        "columns": [ 
-           
-            { "data": "id" },
-            { "data": null          ,title :"ลำดับ" },
-            { "data": "username"    ,title :"ชื่อผู้ใช้" },
-            { "data": "firstname"   ,title :"ชื่อ" },
-            { "data": "lastname"    ,title:"นามสกุล"  },
-            { "data": "create_date" ,title:"วันที่สร้าง" },
-            { "data": "update_date" ,title:"วันที่แก้ไข"},
-            { "data": null ,title:"action"}
-        ],
-        "columnDefs": [
-            {
-	        	"targets": 1,
-	           	"render": function ( data, type, row, meta ) {
-	             	return meta.settings._iDisplayStart + meta.row + 1;
-	            }
-         	 },
-         	 {
-         		 targets : 0,
-         		 visible : false
-         	 
-         	 }
-         ]
-    });
-    
    
     
 });
